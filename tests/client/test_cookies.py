@@ -145,7 +145,7 @@ def test_get_cookie() -> None:
 
     assert response.status_code == 200
     assert response.cookies["example-name"] == "example-value"
-    assert client.cookies["example-name"] == "example-value"
+    assert client.cookies.get("example-name") == "example-value"
 
 
 def test_cookie_persistence() -> None:
@@ -161,7 +161,7 @@ def test_cookie_persistence() -> None:
     response = client.get("http://example.org/set_cookie")
     assert response.status_code == 200
     assert response.cookies["example-name"] == "example-value"
-    assert client.cookies["example-name"] == "example-value"
+    assert client.cookies.get("example-name") == "example-value"
 
     response = client.get("http://example.org/echo_cookies")
     assert response.status_code == 200

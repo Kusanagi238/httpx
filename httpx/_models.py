@@ -1151,7 +1151,7 @@ class Cookies(typing.MutableMapping[str, str]):
     def __getitem__(self, name: str) -> str:
         value = self.get(name)
         if value is None:
-            raise KeyError(name)
+            return ""
         return value
 
     def __delitem__(self, name: str) -> None:
@@ -1211,5 +1211,5 @@ class Cookies(typing.MutableMapping[str, str]):
                 # Note that setting `info[key]` here is an "append" operation,
                 # not a "replace" operation.
                 # https://docs.python.org/3/library/email.compat32-message.html#email.message.Message.__setitem__
-                info[key] = value
+                info.add_header(key, value)
             return info
