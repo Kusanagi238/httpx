@@ -23,6 +23,7 @@ client = httpx.Client(transport=transport)
 transport = httpx.HTTPTransport(uds="socket.uds")
 client = httpx.Client(transport=transport)
 """
+
 import contextlib
 import ssl
 import typing
@@ -268,6 +269,8 @@ class AsyncHTTPTransport(AsyncBaseTransport):
         local_address: typing.Optional[str] = None,
         retries: int = 0,
         socket_options: typing.Optional[typing.Iterable[SOCKET_OPTION]] = None,
+        verify: typing.Any = None,
+        cert: typing.Any = None,
     ) -> None:
         proxy = Proxy(url=proxy) if isinstance(proxy, (str, URL)) else proxy
         ssl_context = ssl_context or SSLContext()
